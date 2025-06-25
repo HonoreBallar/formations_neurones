@@ -1,0 +1,955 @@
+/* src/index.css */
+
+/*
+ * Fichier de styles globaux pour l'application StreamLine.
+ * Contient les imports de polices, les variables CSS (couleurs, typographie),
+ * les styles de réinitialisation de base, les classes utilitaires,
+ * et les styles spécifiques aux composants qui ont des styles globaux
+ * ou des media queries importantes (comme le Header).
+ */
+
+/* Import de la police Poppins depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+  height: 100%; 
+}
+
+/* Variables CSS pour les couleurs, la typographie et les espacements */
+:root {
+  /* Couleurs de la palette StreamLine */
+  --color-primary: #4A90E2; /* Bleu principal */
+  --color-secondary: #50E3C2; /* Vert pour CTAs */
+  --color-text-dark: #333333; /* Gris foncé pour le texte principal */
+  --color-text-light: #AAAAAA; /* Gris clair pour les sous-titres/texte secondaire */
+  --color-background-white: #FFFFFF; /* Fond blanc */
+  --color-background-light: #F8F9FA; /* Fond gris clair (pour certaines sections ou fonds légers) */
+  --color-border: #E0E0E0; /* Couleur de bordure générale */
+
+  /* Typographie */
+  --font-family-base: 'Poppins', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espacements et tailles de police de base (utilisés avec une approche modulaire) */
+  --spacing-xs: 8px;   /* Extra Small */
+  --spacing-sm: 16px;  /* Small */
+  --spacing-md: 24px;  /* Medium */
+  --spacing-lg: 32px;  /* Large */
+  --spacing-xl: 48px;  /* Extra Large */
+  --spacing-xxl: 64px; /* Extra Extra Large */
+
+
+  --font-size-base: 16px;   /* Taille de texte par défaut */
+  --font-size-sm: 14px;     /* Small text */
+  --font-size-md: 18px;     /* Medium text */
+  --font-size-lg: 24px;     /* H3-like */
+  --font-size-xl: 36px;     /* H2-like */
+  --font-size-xxl: 48px;    /* H1-like (desktop) */
+  --font-size-xxxl: 64px;   /* Plus grand H1 pour la section Hero */
+}
+
+/* ---------------------------------- */
+/* Styles de base du corps de la page et réinitialisation */
+/* ---------------------------------- */
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased; /* Améliore le rendu du texte sur WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Améliore le rendu du texte sur Firefox (macOS) */
+  background-color: var(--color-background-white);
+  overflow-x: hidden; /* Empêche le défilement horizontal indésirable */
+  height: 100%;
+}
+
+/* Réinitialisation de base pour les éléments - Box Model par défaut */
+*, *::before, *::after {
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur/hauteur totale */
+}
+
+/* Styles pour les titres */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-dark);
+  line-height: 1.2; /* Améliore la lisibilité des titres */
+}
+
+h1 { font-size: var(--font-size-xxl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-md); }
+/* Ajustements pour les tailles de titres sur mobile */
+@media (max-width: 768px) {
+  h1 { font-size: var(--font-size-xl); } /* H1 légèrement plus petit sur mobile */
+  h2 { font-size: var(--font-size-lg); } /* H2 légèrement plus petit sur mobile */
+}
+
+
+/* Styles pour les paragraphes */
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Styles de base pour les liens */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #3a7bd5; /* Un bleu légèrement plus foncé pour le survol */
+}
+
+/* ---------------------------------- */
+/* Styles des Boutons Génériques */
+/* ---------------------------------- */
+button, .btn { /* Ajout de .btn pour cibler les liens qui agissent comme des boutons */
+  cursor: pointer;
+  border: none;
+  padding: 12px 28px; /* Augmentation du padding pour un bouton plus "généreux" */
+  border-radius: 8px; /* Coins plus arrondis */
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  transition: all 0.3s ease; /* Transition sur toutes les propriétés pour des animations fluides */
+  display: inline-flex; /* Pour centrer le texte/icône si besoin et mieux gérer le padding */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; /* S'assure que les liens ont le même style */
+  font-size: var(--font-size-base); /* Taille de police par défaut */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile pour donner de la profondeur */
+}
+
+/* Style du bouton principal (CTA Vert) */
+.btn-primary {
+  background-color: var(--color-secondary); /* Couleur verte pour CTA */
+  color: var(--color-text-dark); /* Texte gris foncé pour contraste */
+  box-shadow: 0 6px 12px rgba(80, 227, 194, 0.3); /* Ombre plus prononcée avec la couleur du CTA */
+}
+
+.btn-primary:hover {
+  background-color: #43c1a7; /* Un vert légèrement plus foncé au survol */
+  transform: translateY(-2px); /* Effet de léger soulèvement */
+  box-shadow: 0 8px 16px rgba(80, 227, 194, 0.4); /* Ombre plus diffuse au survol */
+}
+
+/* Style du bouton de contour (Connexion - Bleu) */
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary); /* Texte bleu */
+  border: 2px solid var(--color-primary); /* Bordure bleue */
+  margin-right: var(--spacing-sm); /* Espacement entre les boutons (pour le header) */
+  box-shadow: none; /* Pas d'ombre par défaut pour le bouton outline */
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary); /* Remplissage bleu au survol */
+  color: var(--color-background-white); /* Texte blanc au survol */
+  transform: translateY(-2px); /* Effet de léger soulèvement */
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.2); /* Ombre subtile au survol */
+}
+
+
+/* ---------------------------------- */
+/* Classes utilitaires */
+/* ---------------------------------- */
+.container {
+  max-width: 1200px; /* Largeur maximale du contenu */
+  margin: 0 auto; /* Centre le conteneur horizontalement */
+  padding: 0 var(--spacing-sm); /* Padding sur les côtés pour mobile */
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Styles pour les sections, espacement global */
+.section-padding {
+  padding: var(--spacing-xl) 0; /* Padding vertical par défaut pour les sections */
+}
+@media (min-width: 768px) {
+  .section-padding {
+    padding: var(--spacing-xxl) 0; /* Plus de padding sur desktop */
+  }
+}
+
+
+/* Styles pour le tag main sémantique */
+main {
+  display: block; /* S'assure que le main se comporte comme un bloc */
+  /* Aucune autre style ici, les sections internes géreront leurs propres paddings */
+}
+
+
+/* ---------------------------------- */
+/* Styles du Header */
+/* ---------------------------------- */
+.header {
+  background-color: var(--color-background-white);
+  padding: var(--spacing-sm) 0; /* Padding vertical */
+  border-bottom: 1px solid var(--color-border); /* Séparateur léger */
+  position: sticky; /* Pour le faire coller en haut lors du scroll */
+  top: 0;
+  z-index: 1000; /* Assure qu'il est au-dessus des autres éléments lors du scroll */
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo-link {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* Masque le bouton menu burger sur desktop */
+.header__menu-toggle {
+  display: none; /* Caché par défaut sur desktop */
+  background: none;
+  border: none;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  padding: 12px;
+}
+
+/* Navigation principale et boutons sur desktop */
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-md); /* Espacement entre les liens de nav */
+  margin-right: var(--spacing-lg); /* Espacement entre nav et boutons auth */
+}
+
+.header__nav-item .nav-link {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-dark);
+  transition: color 0.3s ease;
+}
+
+.header__nav-item .nav-link:hover {
+  color: var(--color-primary);
+}
+
+.header__auth-buttons {
+  display: flex;
+  gap: var(--spacing-sm); /* Espacement entre les boutons Connexion/Essai Gratuit */
+}
+
+/* ---------------------------------- */
+/* Responsive Design pour le Header */
+/* ---------------------------------- */
+
+@media (max-width: 768px) {
+  .header__menu-toggle {
+    display: block; /* Affiche le bouton burger sur mobile */
+  }
+
+  .header__nav {
+    /* Par défaut, la navigation est cachée sur mobile */
+    display: none; /* Masquée visuellement */
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Juste en dessous du header */
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background-white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-md) 0;
+    border-top: 1px solid var(--color-border);
+    transform: translateY(-100%); /* Masqué hors écran initialement */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    pointer-events: none; /* Désactive les interactions quand caché */
+  }
+
+  .header__nav--open {
+    /* Affiche la navigation quand le menu est ouvert */
+    display: flex; /* Rendu visible */
+    transform: translateY(0); /* Ramène à sa position */
+    opacity: 1;
+    pointer-events: all; /* Active les interactions */
+  }
+
+  .header__nav-list {
+    flex-direction: column;
+    width: 100%;
+    margin-right: 0; /* Pas de marge à droite sur mobile */
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm); /* Espacement réduit pour les liens */
+  }
+
+  .header__nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .header__nav-item .nav-link {
+    display: block; /* Pour que le lien prenne toute la largeur */
+    padding: var(--spacing-xs) 0;
+  }
+
+  .header__auth-buttons {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 var(--spacing-sm); /* Padding pour les boutons sur mobile */
+  }
+
+  .header__auth-buttons .btn {
+    width: 100%; /* Boutons pleine largeur sur mobile */
+    margin-bottom: var(--spacing-sm); /* Espacement entre les boutons */
+  }
+
+  .header__auth-buttons .btn:last-child {
+    margin-bottom: 0;
+  }
+
+  .header__auth-buttons .btn-outline {
+    margin-right: 0; /* Pas de marge à droite pour le bouton outline sur mobile */
+  }
+}
+
+
+/* src/index.css - Ajoute ces styles à la fin du fichier */
+
+/* ---------------------------------- */
+/* Styles de la section Hero */
+/* ---------------------------------- */
+.hero {
+  background-color: var(--color-background-white); /* Fond blanc */
+  color: var(--color-text-dark);
+  text-align: center; /* Centre tout le contenu textuel et le bouton */
+  padding-top: var(--spacing-xxl); /* Plus d'espace en haut pour le Hero */
+  padding-bottom: var(--spacing-xxl); /* Plus d'espace en bas */
+}
+
+/* Ajustement de la hauteur du Hero pour une meilleure présentation */
+.hero__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments verticalement (pour la colonne) */
+  justify-content: center;
+  min-height: 50vh; /* S'assure que le Hero prend au moins la moitié de la hauteur de la vue */
+  max-width: 900px; /* Limite la largeur du contenu textuel pour une meilleure lisibilité */
+  margin: 0 auto; /* Centre le conteneur du hero */
+  padding-left: var(--spacing-sm); /* Ajout d'un léger padding pour mobile */
+  padding-right: var(--spacing-sm);
+}
+
+
+.hero__title {
+  font-size: var(--font-size-xxxl); /* Grande taille pour le H1 */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary); /* Titre principal en bleu */
+  margin-bottom: var(--spacing-md);
+}
+
+.hero__description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-lg); /* Plus d'espace avant le CTA */
+  max-width: 700px; /* Limite la largeur pour la lisibilité */
+}
+
+.hero__cta .btn-primary {
+  /* Le bouton utilise déjà les styles de .btn-primary */
+}
+
+/* ---------------------------------- */
+/* Responsive Design pour la section Hero */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .hero__title {
+    font-size: var(--font-size-xxl); /* Réduire la taille du H1 sur mobile */
+  }
+
+  /* Masque le saut de ligne si le titre tient sur une seule ligne plus petite */
+  .hero__title-break {
+    display: none;
+  }
+
+  .hero__description {
+    font-size: var(--font-size-base); /* Réduire la taille de la description sur mobile */
+  }
+
+  .hero__container {
+    min-height: auto; /* Supprime le min-height sur mobile si l'on veut un flux plus naturel */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: var(--font-size-xl); /* Encore plus petit sur très petits écrans */
+  }
+}
+
+/* src/index.css - Ajoute ces styles à la fin du fichier */
+
+/* ---------------------------------- */
+/* Styles de la section Features */
+/* ---------------------------------- */
+.features {
+  background-color: var(--color-background-light); /* Fond gris clair */
+  color: var(--color-text-dark);
+}
+
+.features__heading {
+  margin-bottom: var(--spacing-xl); /* Plus d'espace sous le titre de section */
+  color: var(--color-text-dark);
+}
+
+.features__grid {
+  display: flex; /* Utilise flexbox pour aligner les cartes */
+  flex-wrap: wrap; /* Permet aux cartes de passer à la ligne */
+  gap: var(--spacing-lg); /* Espacement entre les cartes */
+  justify-content: center; /* Centre les cartes dans la grille */
+  align-items: stretch; /* Les cartes auront la même hauteur */
+}
+
+.feature-card {
+  background-color: var(--color-background-white);
+  border-radius: 12px; /* Coins arrondis pour les cartes */
+  padding: var(--spacing-lg);
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* Ombre plus prononcée pour les cartes */
+  flex: 1; /* Permet aux cartes de prendre l'espace disponible */
+  min-width: 280px; /* Largeur minimale pour les cartes */
+  max-width: 380px; /* Largeur maximale pour éviter qu'elles soient trop grandes sur de petits écrans */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition au survol */
+}
+
+.feature-card:hover {
+  transform: translateY(-5px); /* Effet de soulèvement au survol */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); /* Ombre plus intense au survol */
+}
+
+.feature-card__icon {
+  color: var(--color-primary); /* Icône en bleu */
+  margin-bottom: var(--spacing-md);
+  display: flex; /* Pour centrer l'icône */
+  justify-content: center;
+  align-items: center;
+  height: 64px; /* Hauteur fixe pour les icônes */
+}
+
+.feature-card__title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-dark);
+}
+
+.feature-card__description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-dark);
+}
+
+/* ---------------------------------- */
+/* Responsive Design pour les Features */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  .features__grid {
+    flex-direction: column; /* Les cartes s'empilent sur mobile */
+    align-items: center; /* Centre les cartes empilées */
+    gap: var(--spacing-md); /* Espacement réduit sur mobile */
+  }
+
+  .feature-card {
+    width: 100%; /* Les cartes prennent toute la largeur sur mobile */
+    max-width: 400px; /* Limite la largeur même si 100% pour ne pas qu'elles soient trop grandes */
+    padding: var(--spacing-md);
+  }
+}
+
+/* src/index.css - Ajoute ces styles à la fin du fichier */
+
+/* ---------------------------------- */
+/* Styles de la section Testimonials */
+/* ---------------------------------- */
+.testimonials {
+  background-color: var(--color-background-white); /* Fond blanc */
+  color: var(--color-text-dark);
+}
+
+.testimonials__heading {
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text-dark);
+}
+
+.testimonials__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg); /* Espacement entre les cartes */
+  justify-content: center;
+  align-items: stretch; /* Assure que toutes les cartes ont la même hauteur */
+}
+
+.testimonial-card {
+  background-color: var(--color-background-light); /* Fond légèrement gris pour les cartes de témoignage */
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Ombre plus légère que les features */
+  flex: 1;
+  min-width: 300px; /* Largeur minimale pour les cartes */
+  max-width: 500px; /* Pour 2 colonnes, max-width est un peu plus grand */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pour pousser l'auteur en bas si le contenu varie */
+}
+
+.testimonial-card__quote {
+  font-size: var(--font-size-md);
+  font-style: italic; /* Pour les citations */
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-dark);
+}
+
+.testimonial-card__author {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary); /* Nom de l'auteur en bleu */
+  margin-top: auto; /* Pousse l'auteur vers le bas de la carte */
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-base);
+}
+
+.testimonial-card__title {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light); /* Titre/entreprise en gris clair */
+}
+
+/* Optionnel: Styles pour les étoiles si ajoutées */
+/* .testimonial-card__stars {
+  margin-bottom: var(--spacing-sm);
+  color: #FFD700; // Couleur or pour les étoiles
+} */
+
+/* ---------------------------------- */
+/* Responsive Design pour les Testimonials */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  .testimonials__grid {
+    flex-direction: column; /* Les cartes s'empilent sur mobile */
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .testimonial-card {
+    width: 100%;
+    max-width: 450px; /* Limite la largeur sur mobile pour ne pas être trop étirée */
+    padding: var(--spacing-md);
+  }
+
+  .testimonial-card__quote {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* src/index.css - Ajoute ces styles à la fin du fichier */
+
+/* ---------------------------------- */
+/* Styles de la section Pricing */
+/* ---------------------------------- */
+.pricing {
+  background-color: var(--color-background-light); /* Fond gris clair */
+  color: var(--color-text-dark);
+}
+
+.pricing__heading {
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text-dark);
+}
+
+.pricing__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  align-items: stretch; /* Assure que toutes les cartes ont la même hauteur */
+}
+
+.pricing-card {
+  background-color: var(--color-background-white);
+  border-radius: 12px;
+  padding: var(--spacing-lg) var(--spacing-md); /* Padding ajusté pour le contenu */
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  min-width: 280px; /* Largeur minimale */
+  max-width: 350px; /* Largeur maximale pour trois cartes côte à côte */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  border: 2px solid transparent; /* Bordure transparente par défaut */
+}
+
+/* Styles pour la carte "Pro" mise en avant */
+.pricing-card--highlighted {
+  border-color: var(--color-primary); /* Bordure bleue */
+  transform: translateY(-10px); /* Soulève légèrement la carte */
+  box-shadow: 0 12px 24px rgba(74, 144, 226, 0.2); /* Ombre plus prononcée et colorée */
+}
+
+.pricing-card--highlighted .pricing-card__name {
+  color: var(--color-primary); /* Nom du plan en bleu */
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px); /* Effet de soulèvement au survol */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Ombre plus intense au survol */
+}
+.pricing-card--highlighted:hover {
+  transform: translateY(-12px); /* Soulèvement un peu plus prononcé au survol */
+  box-shadow: 0 15px 30px rgba(74, 144, 226, 0.3); /* Ombre encore plus intense */
+}
+
+
+.pricing-card__name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-text-dark);
+}
+
+.pricing-card__price {
+  font-size: var(--font-size-xxl); /* Grande taille pour le prix */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.pricing-card__period {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  font-weight: var(--font-weight-regular);
+  margin-left: 5px;
+}
+
+.pricing-card__description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-md);
+  min-height: 40px; /* Pour éviter le décalage si la description varie en hauteur */
+}
+
+.pricing-card__features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--spacing-lg);
+  text-align: left; /* Alignement des fonctionnalités à gauche */
+  flex-grow: 1; /* Permet à la liste de prendre l'espace restant pour aligner le CTA en bas */
+}
+
+.pricing-card__features li {
+  display: flex; /* Pour aligner l'icône et le texte */
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-base);
+  color: var(--color-text-dark);
+}
+
+.pricing-card__feature-icon {
+  color: var(--color-secondary); /* Icône de check en vert */
+  margin-right: var(--spacing-xs);
+  flex-shrink: 0; /* Empêche l'icône de rétrécir */
+}
+
+.pricing-card__cta {
+  margin-top: auto; /* Pousse le bouton CTA vers le bas de la carte */
+}
+
+.pricing-card__cta .btn {
+  width: 100%; /* Bouton pleine largeur dans la carte */
+}
+
+/* ---------------------------------- */
+/* Responsive Design pour Pricing */
+/* ---------------------------------- */
+@media (max-width: 992px) { /* Pour tablettes, passer à 2 colonnes */
+  .pricing__grid {
+    gap: var(--spacing-md);
+  }
+  .pricing-card {
+    max-width: 45%; /* Environ 2 cartes par ligne */
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing__grid {
+    flex-direction: column; /* Les cartes s'empilent sur mobile */
+    align-items: center;
+  }
+
+  .pricing-card {
+    width: 100%;
+    max-width: 400px; /* Limite la largeur sur mobile */
+    padding: var(--spacing-md);
+  }
+  .pricing-card--highlighted {
+    transform: translateY(-5px); /* Soulèvement réduit sur mobile */
+  }
+  .pricing-card--highlighted:hover {
+    transform: translateY(-7px); /* Soulèvement réduit sur mobile */
+  }
+}
+
+/* src/index.css - Ajoute ces styles à la fin du fichier */
+
+/* ---------------------------------- */
+/* Styles de la section Final CTA */
+/* ---------------------------------- */
+.final-cta {
+  background-color: var(--color-primary); /* Fond bleu pour le CTA final */
+  color: var(--color-background-white); /* Texte blanc pour contraster */
+  text-align: center;
+  padding-top: var(--spacing-xxl); /* Plus de padding vertical */
+  padding-bottom: var(--spacing-xxl);
+}
+
+.final-cta__heading {
+  font-size: var(--font-size-xl);
+  color: var(--color-background-white); /* Titre en blanc */
+  margin-bottom: var(--spacing-md);
+}
+
+.final-cta__description {
+  font-size: var(--font-size-md);
+  color: var(--color-background-white); /* Description en blanc */
+  margin-bottom: var(--spacing-lg);
+  max-width: 800px; /* Limite la largeur pour la lisibilité */
+  margin-left: auto; /* Centre le paragraphe */
+  margin-right: auto;
+}
+
+.final-cta__button-wrapper {
+  /* Le bouton utilise déjà les styles de .btn-primary */
+}
+
+/* Le bouton btn-primary dans cette section doit avoir le texte blanc et non dark */
+.final-cta .btn-primary {
+  color: var(--color-background-white); /* Texte blanc sur le bouton vert */
+}
+
+.final-cta .btn-primary:hover {
+  color: var(--color-background-white); /* Conserve le texte blanc au survol */
+}
+
+
+/* ---------------------------------- */
+/* Responsive Design pour le Final CTA */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  .final-cta {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+  .final-cta__heading {
+    font-size: var(--font-size-lg); /* Réduire la taille du titre */
+  }
+  .final-cta__description {
+    font-size: var(--font-size-base); /* Réduire la taille de la description */
+  }
+}
+
+/* src/index.css - Ajoute ces styles à la fin du fichier */
+
+/* ---------------------------------- */
+/* Styles du Footer */
+/* ---------------------------------- */
+.footer {
+  background-color: var(--color-text-dark); /* Fond gris très foncé/noir */
+  color: var(--color-background-white); /* Texte blanc */
+  padding: var(--spacing-xl) 0;
+  font-size: var(--font-size-sm);
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux colonnes de passer à la ligne sur mobile */
+  justify-content: space-between; /* Espacement entre les colonnes */
+  gap: var(--spacing-lg); /* Espacement entre les colonnes si elles se wrappent */
+  align-items: flex-start; /* Aligne les colonnes en haut */
+}
+
+.footer__column {
+  flex: 1; /* Permet aux colonnes de prendre l'espace disponible */
+  min-width: 180px; /* Largeur minimale pour éviter des colonnes trop étroites */
+  margin-bottom: var(--spacing-md); /* Espacement si les colonnes s'empilent */
+}
+
+/* Styles spécifiques pour la colonne du logo/copyright */
+.footer__column--brand {
+  min-width: 220px; /* Un peu plus large pour le logo */
+}
+
+.footer__logo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary); /* Logo en bleu */
+  text-decoration: none;
+  display: block; /* Pour que margin-bottom fonctionne */
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer__copyright {
+  color: var(--color-text-light); /* Texte copyright en gris clair */
+  line-height: 1.4;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.footer__heading {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-background-white);
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer__links-list,
+.footer__social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__links-list li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer__link {
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+  color: var(--color-primary); /* Bleu au survol */
+  text-decoration: underline;
+}
+
+.footer__social-list {
+  display: flex;
+  gap: var(--spacing-md); /* Espacement entre les icônes */
+  margin-bottom: var(--spacing-md);
+}
+
+.footer__social-list li a {
+  color: var(--color-background-white); /* Icônes en blanc */
+  transition: color 0.3s ease;
+}
+
+.footer__social-list li a:hover {
+  color: var(--color-primary); /* Bleu au survol des icônes */
+  transform: translateY(-2px); /* Léger soulèvement */
+  text-decoration: none; /* Pas de soulignement sur les icônes */
+}
+
+.footer__contact-text {
+  color: var(--color-text-light);
+}
+
+/* ---------------------------------- */
+/* Responsive Design pour le Footer */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  .footer__container {
+    flex-direction: column; /* Empile les colonnes sur mobile */
+    align-items: center; /* Centre les colonnes */
+    text-align: center; /* Centre le texte dans chaque colonne */
+  }
+
+  .footer__column {
+    min-width: unset; /* Retire la largeur minimale */
+    width: 100%; /* Prend toute la largeur disponible */
+    margin-bottom: var(--spacing-lg); /* Plus d'espace entre les colonnes empilées */
+  }
+  .footer__column:last-child {
+    margin-bottom: 0; /* Pas de marge en bas pour la dernière colonne */
+  }
+
+  .footer__social-list {
+    justify-content: center; /* Centre les icônes sociales */
+  }
+}
+
+/* src/index.css - Ajoute ces styles à la fin du fichier */
+
+/* ---------------------------------- */
+/* Styles du bouton ScrollToTopButton */
+/* ---------------------------------- */
+.scroll-to-top-btn {
+  position: fixed; /* Positionnement fixe par rapport à la fenêtre */
+  bottom: var(--spacing-lg); /* 32px du bas */
+  right: var(--spacing-lg);  /* 32px de la droite */
+  background-color: var(--color-primary); /* Fond bleu */
+  color: var(--color-background-white); /* Icône blanche */
+  border: none;
+  border-radius: 50%; /* Bouton rond */
+  width: 56px; /* Taille du bouton */
+  height: 56px;
+  display: flex; /* Pour centrer l'icône */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour le faire ressortir */
+  transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1001; /* Assure qu'il est au-dessus du header et de tout le reste */
+  opacity: 0.9; /* Légèrement transparent par défaut */
+}
+
+.scroll-to-top-btn:hover {
+  background-color: #3a7bd5; /* Bleu légèrement plus foncé au survol */
+  transform: translateY(-3px); /* Effet de soulèvement */
+  opacity: 1; /* Pleine opacité au survol */
+}
+
+/* ---------------------------------- */
+/* Responsive Design pour le bouton ScrollToTopButton */
+/* ---------------------------------- */
+@media (max-width: 768px) {
+  .scroll-to-top-btn {
+    bottom: var(--spacing-md); /* Moins de marge sur mobile */
+    right: var(--spacing-md);
+    width: 48px; /* Plus petit sur mobile */
+    height: 48px;
+  }
+  .scroll-to-top-btn svg { /* Cibler l'icône SVG à l'intérieur */
+    font-size: 20px; /* Réduire la taille de l'icône */
+  }
+}
