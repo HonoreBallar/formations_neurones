@@ -51,7 +51,9 @@ function ScrollToTopButton() {
           className="scroll-to-top-btn"
           aria-label="Retourner en haut de la page"
         >
-          <FaArrowUp size={24} />
+          {/* <FaArrowUp size={24} style={{ color: 'red', fontSize: '24px' }}/> */}
+          
+          <span style={{fontSize: '22px', color: 'white'}}>⬆︎</span>
         </button>
       )}
     </>

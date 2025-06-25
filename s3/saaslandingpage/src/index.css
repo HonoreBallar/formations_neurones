@@ -918,7 +918,6 @@ main {
   bottom: var(--spacing-lg); /* 32px du bas */
   right: var(--spacing-lg);  /* 32px de la droite */
   background-color: var(--color-primary); /* Fond bleu */
-  color: var(--color-background-white); /* Icône blanche */
   border: none;
   border-radius: 50%; /* Bouton rond */
   width: 56px; /* Taille du bouton */
