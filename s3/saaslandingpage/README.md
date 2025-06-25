@@ -1,5 +1,7 @@
 # StreamLine - Landing Page en React
 
+![Screenshot de l'accueil](./src//assets/screenshot.png)
+
 ## Description du Projet
 Ce projet est une landing page moderne et réactive développée pour StreamLine, une plateforme SaaS fictive qui aide les équipes à automatiser leurs flux de travail et à gérer leurs projets de manière centralisée. L'objectif est de présenter l'entreprise, ses fonctionnalités clés, les témoignages clients, les plans tarifaires et un appel à l'action final de manière attrayante et professionnelle.
 
@@ -10,27 +12,30 @@ Le projet est construit avec React.js et Vite, suivant une architecture basée s
 
 Voici la structure des dossiers et la responsabilité de chaque fichier/dossier :
 
+```
 streamline-landing-page/
-├── public/
-│   └── (fichiers statiques comme le favicon, etc.)
-├── src/
-│   ├── assets/       // Contient les ressources statiques (ex: icônes SVG si utilisées directement)
-│   ├── components/   // Regroupe tous les composants React réutilisables de la page
-│   │   ├── Header.jsx       // L'en-tête de la page avec navigation et menu mobile
-│   │   ├── Hero.jsx         // La section d'introduction principale (titre, description, CTA)
-│   │   ├── Features.jsx     // Présentation des fonctionnalités clés
-│   │   ├── Testimonials.jsx // Témoignages de clients satisfaits
-│   │   ├── Pricing.jsx      // Les différents plans tarifaires
-│   │   ├── FinalCTA.jsx     // Le dernier appel à l'action avant le pied de page
-│   │   └── Footer.jsx       // Le pied de page avec liens secondaires et sociaux
-│   ├── App.jsx         // Le composant principal qui assemble toutes les sections de la landing page
-│   ├── index.css       // Styles CSS globaux (variables, styles de base, classes utilitaires, styles spécifiques aux composants)
-│   └── main.jsx        // Le point d'entrée de l'application React (montage de l'App)
-├── .gitignore          // Fichier pour spécifier les fichiers/dossiers à ignorer par Git
-├── index.html          // Le fichier HTML racine
-├── package.json        // Gère les dépendances du projet et les scripts NPM
-├── vite.config.js      // Configuration de Vite
-└── README.md           // Ce fichier de documentation
+├── public/                          # Fichiers statiques (ex: favicon, robots.txt)
+│   └── ...                          
+├── src/                             # Code source principal
+│   ├── assets/                      # Images, icônes, SVG personnalisés
+│   ├── components/                  # Composants React de la landing page
+│   │   ├── Header.jsx              # En-tête avec logo, navigation et menu mobile
+│   │   ├── Hero.jsx                # Section d’intro avec titre, description et CTA
+│   │   ├── Features.jsx            # Fonctionnalités principales de StreamLine
+│   │   ├── Testimonials.jsx        # Avis et témoignages clients
+│   │   ├── Pricing.jsx             # Offres et plans tarifaires
+│   │   ├── FinalCTA.jsx            # Dernier appel à l’action
+│   │   ├── Footer.jsx              # Pied de page (liens, copyright, réseaux)
+│   │   └── ScrollToTopButton.jsx   # Bouton de retour en haut de page
+│   ├── App.jsx                      # Composant racine : assemble toute la page
+│   ├── index.css                    # Styles globaux et utilitaires
+│   └── main.jsx                     # Point d’entrée de l’app (rendu dans le DOM)
+├── .gitignore                       # Fichiers à ignorer par Git
+├── index.html                       # HTML principal injecté par React
+├── package.json                     # Dépendances, scripts, métadonnées npm
+├── vite.config.js                   # Configuration de l’outil Vite
+└── README.md                        # Documentation du projet
+```
 
 ### Principes "Clean Code" Appliqués :
 * **Modularité des Composants :** Chaque section de la page est un composant React indépendant, favorisant la réutilisabilité et la clarté.
