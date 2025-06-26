@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Preahvihear&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+       <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img class="img-logo" src="images/log.png" alt="Your Company Logo">
+                </a>
+            </div>
+            <nav class="main-menu">
+                <input type="checkbox" id="toggle" />
+                
+                <label for="toggle" class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="project.html">Projects</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="main-container">
+
+            <section class="projects">
+                <div class="project-item">
+                    <div class="card-left">
+                        <div class="card-left-text">
+                            <p class="p-card">Featured project</p>
+                            <h3 class="h-card">Example project</h3>
+                        </div>
+                        <div class="card-gradient">
+                            <p class="card-text">
+                                A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. 
+                                Create and save new playlists of recommended tracks based on your existing playlists and more.
+                            </p>
+                        </div>
+                        <p>
+                            <a class="card-link" href="https://example.com" target="_blank">View project</a>
+                        </p>
+                    </div>
+                    <div class="card-right">
+                        <img src="images/Project1.png" alt="Project 1 image">
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="card-right-reverse">
+                        <img src="images/Project1.png" alt="Project 2 image">
+                    </div>
+                    <div class="card-left-reverse">
+                        <div class="card-left-text card-left-text-reverse">
+                            <p class="p-card">Featured project</p>
+                            <h3 class="h-card">Example project 2</h3>
+                        </div>
+                        <div class="card-gradient-reverse">
+                            <p class="card-text">
+                                A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. 
+                                Create and save new playlists of recommended tracks based on your existing playlists and more.
+                            </p>
+                        </div>
+                        <p class="card-link-reverse">
+                            <a class="card-link" href="https://example.com" target="_blank">View project</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <h2 class="h-footer">Contact</h2>
+                <div class="info-footer">
+                    <p>I'm currently looking to join a cross-functional team that values improving people's lives through accessible design, or have a project in mind? Let's connect.</p>
+                    <p><a class="email-footer" href="mailto:ibrahimmemon2020@gmail.com">ibrahimmemon2020@gmail.com</a></p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                </div>
+            </footer>
+            <button id="backToTop" title="Remonter en haut">&#8679;</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

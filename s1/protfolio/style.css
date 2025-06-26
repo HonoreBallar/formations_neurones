@@ -1,0 +1,853 @@
+/* Basic Reset & Body Styling (Optional, but good practice) */
+body {
+  margin: 0;
+  font-family: "Preahvihear", sans-serif;
+  background-color: #11071F;
+  color: #FFF; /* White text color for better contrast */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Header Styling */
+header {
+  background-color: #1A0B2E; /* Light gray background */
+  padding: 10px 20px; /* Some padding around the content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+main{
+    margin-top: 50px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.header-container {
+  max-width: 1000px; /* Set your desired maximum width */
+  margin: 0 auto; /* Centers the container horizontally */
+  padding: 0 20px; /* Add some padding to the sides within the container */
+  display: flex; /* Enable Flexbox for its children (logo and menu) */
+  justify-content: space-between; /* Pushes children to opposite ends */
+  align-items: center; /* Vertically centers items */
+}
+
+
+/* Hamburger (3 barres) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Toggle caché */
+#toggle {
+    display: none;
+  }
+  
+
+
+/* Profil Styling */
+.profil-container{
+    display: flex; /* Enable Flexbox for the profile section */
+    align-items: center; /* Vertically centers items */
+    max-width: 550px;
+    gap: 20px; /* Space between profile image and text */
+}
+.profil-name{
+    color: #7127BA;
+}
+.profile-image{
+    position: relative;
+    display: inline-block;
+}
+.profile-image img{
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+.profile-image::before{
+    content: "";
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background: radial-gradient(circle at 50% 50%, #7127BA 0%, #11071F 80%);
+    /* background: radial-gradient(circle at center, #7127BA 0%, #11071F 60%, transparent 100%); */
+    z-index: 0;
+}
+
+.profil-item{
+    display: flex;
+    position: relative;
+}
+.profil-item img{
+    
+}
+.design-profil{
+    text-decoration: underline;
+    font-size: 12px;
+}
+.h-profil{
+    font-size: 10px;;
+}
+.large-text-profil{
+    font-size: 30px; /* Adjust as needed */
+    margin: 0; /* Remove default margin */
+    color: #FFF; /* White text color for better contrast */
+}
+.highlight{
+    display: inline-block;
+    background-image: url('images/Ellipse.png');
+    background-size: 100% auto; /* Ensures the background image covers the element */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    background-position: center; /* Centers the background image */
+    /* padding: 0 1px; */
+    color: #7127BA;
+    min-width: 105px;
+}
+.small-text-profil{
+    font-size: 0.4em; /* Smaller text size */
+}
+
+.presentation-detail{
+    margin: 50px 0;
+    line-height: 25px;
+}
+
+.main-container {
+  max-width: 1000px; /* Set your desired maximum width */
+  margin: 0 auto;
+  padding: 20px; /* Add some padding around the content */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Logo Styling */
+.img-logo {
+  max-height: 50px; /* Adjust as needed */
+  width: auto; /* Maintain aspect ratio */
+  display: block; /* Removes extra space below image */
+}
+
+/* Navigation Menu Styling */
+.main-menu {
+    position: relative;
+}
+
+.main-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-menu li {
+    margin-left: 70px;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.main-menu a:hover {
+    color: #007bff;
+}
+
+/* Experience Styling */
+.experience-container{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 10px; /* Space between the columns */
+    /* background: radial-gradient(circle at center, #7127BA 0%, #11071F 40%); */
+    margin-bottom: 60px;
+    overflow: visible;
+}
+
+.experience-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 120%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, #7127BA 0%, #11071F 60%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(8px); /* Optionnel pour un effet plus doux */
+}
+
+.card-content{
+    display: flex;
+    gap: 70px; /* Espace entre l'image et le texte */
+    align-items: center; /* Centre les éléments verticalement */
+}
+.card-container {
+  width: 100%; /* Prend 90% de la largeur du parent */
+  height: 130px;
+  background: linear-gradient(to right, #2C1250, #2a003f); /* Dégradé de fond */
+  border-radius: 20px; /* Bords arrondis */
+  padding: 20px; /* Espacement intérieur */
+  box-sizing: border-box; /* S'assurer que le padding ne s'ajoute pas à la largeur */
+  display: flex; /* Utilisation de Flexbox pour le contenu principal de la carte */
+  align-items: center; /* Centre les éléments verticalement */
+  gap: 50px; /* Espace entre l'image et le texte */
+  overflow: hidden; /* Important pour que l'image ne dépasse pas les bords arrondis */
+  position: relative; /* Pour positionner les éléments décoratifs si besoin */
+  border-top: 5px solid #6a2c91; /* Bord supérieur coloré */
+}
+.card-image{
+    width: 50px;
+    height: 50px;
+}
+.card-text-section h2{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.card-text-section p{
+    font-size: 12px;
+    margin: 0; /* Supprimer la marge par défaut */
+}
+
+.learn-more-button {
+  background-color: #693B93; /* Couleur de fond du bouton */
+  color: #ffffff; /* Couleur du texte du bouton */
+  border: none; /* Pas de bordure */
+  border-radius: 5px; /* Bords légèrement arrondis */
+  padding: 8px 10px; /* Espacement intérieur du bouton */
+  font-size: 8px; /* Taille de police du bouton */
+  font-weight: bold;
+  cursor: pointer; /* Curseur de la souris en pointeur */
+  transition: background-color 0.3s ease; /* Transition douce au survol */
+  text-transform: uppercase; /* Texte en majuscules */
+  letter-spacing: 1px; /* Espacement des lettres */
+}
+
+/* skills Styling */
+.skills {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 90px;
+}
+
+.skills img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+}
+
+/* presentation Styling */
+.presentation-title{
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+.presentation-detail{
+    font-size: 1.2em;
+    width: 80%;
+}
+.presentation-subtitle{
+    font-size: 0.8em;
+}
+
+/* Project Styling */
+.project-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 32px;
+    margin-bottom: 100px;
+}
+
+.card-left {
+    position: relative;
+    width: 50%;
+    /* min-width: 320px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.card-left-reverse{
+    position: relative;
+    width: 50%;
+    /* min-width: 320px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.card-left-text{
+    position: relative;
+    z-index: 2;
+    margin-bottom: 50px;
+    bottom: 50px;
+}
+.card-left-text-reverse{
+    text-align: right;
+}
+
+.p-card {
+    color: #9857D3;
+    margin-bottom: 0;
+    z-index: 2;
+    position: relative;
+}
+
+.h-card {
+    font-weight: bold;
+    margin-top: 0;
+    z-index: 2;
+    position: relative;
+}
+.card-link{
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.8em;
+    position: relative;
+    z-index: 2;
+
+    background-color: #8c42b8;
+    padding: 4px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    top: 40px;
+}
+
+.card-link-reverse{
+    text-align: right;
+}
+
+.card-gradient {
+    position: absolute;
+    top: 48px;
+    left: -50px;
+    width: 580px;
+    height: 120px;
+    background: rgba(112, 39, 186, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(112, 39, 186, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transform: translateX(40px);
+    border: 1px solid rgba(112, 39, 186, 0.2);
+}
+
+.card-gradient-reverse {
+    position: absolute;
+    top: 48px;
+    right: -50px;
+    width: 480px;
+    height: 120px;
+    background: rgba(112, 39, 186, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(112, 39, 186, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transform: translateX(-40px);
+    border: 1px solid rgba(112, 39, 186, 0.2);
+}
+
+.card-text {
+    color: #fff;
+    font-size: 1em;
+    margin: 0;
+}
+
+.card-right {
+    width: 50%;
+    min-width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-right-reverse {
+    width: 50%;
+    min-width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-right img {
+    border-radius: 16px;
+    box-shadow: -10px -10px 20px 0 rgba(112, 39, 186, 0.15);
+}
+
+.card-right-reverse img {
+    border-radius: 16px;
+    box-shadow: -10px -10px 20px 0 rgba(112, 39, 186, 0.15);
+}
+
+.card-text {
+  color: #ffffff;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 10px;
+}
+
+/* Footer Styling */
+
+.info-footer{
+    max-width: 500px;
+    margin-bottom: 10px;
+}
+
+.info-footer p{
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.email-footer{
+    color: #FFF !important;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.social-links{
+    display: flex;
+    gap: 30px; /* Space between icons */
+}
+
+.social-links a {
+    color: #FFF;
+    text-decoration: none; 
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+.social-links a:hover {
+    color: #007bff; /* Change color on hover */
+}
+
+  /* RESPONSIVE */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .header-container {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #1A0B2E;
+        z-index: 1000;
+        padding: 15px 20px;
+        box-sizing: border-box;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .main-menu ul {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        flex-direction: column;
+        background: #1A0B2E;
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        transition: all 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-menu li {
+        margin: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-menu a {
+        display: block;
+        padding: 15px 0;
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    #toggle:checked ~ ul {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Animation hamburger en croix */
+    #toggle:checked + .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    #toggle:checked + .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #toggle:checked + .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Position du hamburger */
+    .hamburger {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+    }
+
+    /* Ajustements pour le contenu principal */
+    main {
+        margin-top: 70px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .main-container {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .profil-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .profile-text {
+        text-align: center;
+        width: 100%;
+    }
+
+    .profil-item {
+        justify-content: center;
+    }
+
+    .presentation {
+        text-align: center;
+    }
+
+    .presentation-detail {
+        text-align: center;
+        width: 100%;
+    }
+
+    .experience-container {
+        grid-template-columns: 1fr;
+    }
+
+    .skills {
+        margin-bottom: 50px;
+    }
+
+    .skills img {
+        width: 100%;
+        /* max-width: 550px; */
+        height: auto;
+    }
+
+    .project-item {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+
+    .card-left, .card-right, .card-left-reverse, .card-right-reverse {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .card-right img, .card-right-reverse img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .card-gradient, .card-gradient-reverse {
+        position: relative;
+        width: 100%;
+        left: 0;
+        right: 0;
+        transform: none;
+        margin-top: 20px;
+    }
+
+    .card-left-text, .card-left-text-reverse {
+        position: relative;
+        bottom: 0;
+        margin-bottom: 20px;
+    }
+
+    .card-link-reverse {
+        text-align: left;
+    }
+
+    .about-me {
+        flex-direction: column;
+        gap: 20px;
+        margin: 30px 0;
+        align-items: center;
+    }
+
+    .about-me-image {
+        flex: none;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .about-me-text {
+        flex: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .about-me-text h1 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .about-me-text p {
+        font-size: 0.9em;
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
+
+    .stack {
+        font-size: 11px;
+        margin-bottom: 20px;
+    }
+}
+
+/* About Me Styling */
+.about-me {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-me-image {
+    flex: 1;
+    max-width: 400px;
+}
+
+.about-me-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(112, 39, 186, 0.2);
+}
+
+.about-me-text {
+    flex: 1;
+}
+
+.about-me-text h1 {
+    color: #7127BA;
+    margin-bottom: 20px;
+}
+
+.about-me-text p {
+    line-height: 1.6;
+    color: #E0E0E0;
+}
+
+.stack {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Services Section */
+.services {
+    padding: 5px 0;
+}
+
+.section-title {
+    text-align: center;
+    color: #7127BA;
+    margin-bottom: 40px;
+    font-size: 2em;
+}
+
+.services-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service-card {
+    background: linear-gradient(145deg, #1A0B2E, #2C1250);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(112, 39, 186, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.05);
+}
+
+.service-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.service-content h3 {
+    color: #7127BA;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.service-content p {
+    color: #E0E0E0;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.service-button {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #7127BA;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.service-button:hover {
+    background: #9857D3;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .services-container {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .service-card {
+        flex: 1;
+        min-width: 0;
+        max-width: none;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .service-card {
+        max-width: 100%;
+    }
+
+    .service-image {
+        height: 180px;
+    }
+
+    .service-content {
+        padding: 15px;
+    }
+
+    .service-content h3 {
+        font-size: 1.1em;
+    }
+
+    .service-content p {
+        font-size: 0.85em;
+    }
+
+    .service-button {
+        padding: 8px 20px;
+        font-size: 0.9em;
+    }
+}
+
+/* Back to top button */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    display: none;
+    background-color: #1303b1;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s;
+}
+
+#backToTop:hover {
+    background-color: #8c42b8;
+}
+
+#typewriter {
+    border-right: 2px solid white;
+    /* display: inline-block; */
+    animation: blink-caret 0.75s step-end infinite;
+  }
+  
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: rgb(255, 255, 255); }
+}
+  
