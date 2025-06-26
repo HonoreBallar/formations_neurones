@@ -1,0 +1,62 @@
+.slider-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 3rem auto;
+  position: relative;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slide-image {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  transition: transform 0.5s ease-in-out;
+  border-radius: 12px;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 0 10px;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.nav-button.left {
+  left: 10px;
+}
+
+.nav-button.right {
+  right: 10px;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: #333;
+}

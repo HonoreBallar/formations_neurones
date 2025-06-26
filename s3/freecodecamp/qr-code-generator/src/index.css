@@ -1,0 +1,37 @@
+.qr-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.qr-input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.qr-button {
+  padding: 0.5rem 1rem;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.qr-button:hover {
+  background: #555;
+}
+
+.qr-result {
+  margin-top: 2rem;
+}
