@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Educator App</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.22.10/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [question, setQuestion] = useState('');
+      const [result, setResult] = useState('');
+      const [loading, setLoading] = useState(false);
+      const [error, setError] = useState('');
+
+      const handleSubmit = async () => {
+        if (!question.trim()) {
+          setError('Please enter a question.');
+          return;
+        }
+        setLoading(true);
+        setError('');
+        setResult('');
+        try {
+          const response = await axios.post(`http://127.0.0.1:8000/execute`, { question },
+             {
+            headers: {
+              'Content-Type': 'application/json',
+              "withCredentials": "true",
+              'Access-Control-Allow-Origin': "127.0.0.1:8000",
+              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+              'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+            
+            }}
+          );
+          console.log(response);
+          const data = await response.json();
+          setResult(data.result || 'No result returned.');
+        } catch (err) {
+          setError('Failed to fetch response. Please try again.');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      return (
+        <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h1 className="text-2xl font-bold text-center mb-4">AI Educator</h1>
+            <div className="mb-4">
+              <input
+                type="text"
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                placeholder="Ask a question about AI..."
+                className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className={`w-full p-2 text-white rounded ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'}`}
+            >
+              {loading ? 'Loading...' : 'Ask'}
+            </button>
+            {error && <p className="mt-4 text-red-500">{error}</p>}
+            {result && (
+              <div className="mt-4 p-4 bg-gray-50 rounded border">
+                <h2 className="text-lg font-semibold">Response:</h2>
+                <p>{result}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction à l’IA",
+    "tags": ["IA", "Bases"],
+    "difficulty": "Facile",
+    "duration": 15,
+    "summary": "Découvrez les concepts clés de l’intelligence artificielle.",
+    "recommendationReason": "Basé sur votre intérêt pour la programmation et le niveau débutant.",
+    "objectives": ["Comprendre IA vs ML", "Identifier des cas d’usage"]
+  },
+  {
+    "id": 2,
+    "title": "Machine Learning Intermédiaire",
+    "tags": ["ML", "Supervisé"],
+    "difficulty": "Moyen",
+    "duration": 25,
+    "summary": "Approfondissez l’apprentissage supervisé et les métriques.",
+    "recommendationReason": "Suite logique après l’introduction, difficulté progressive.",
+    "objectives": ["Comprendre régression/classement", "Lire une matrice de confusion"]
+  },
+  {
+    "id": 3,
+    "title": "Évaluation de modèles",
+    "tags": ["Metrics", "Validation"],
+    "difficulty": "Moyen",
+    "duration": 20,
+    "summary": "Mesurez la performance et évitez le surapprentissage.",
+    "recommendationReason": "Aligné avec votre objectif d’évaluation de modèles.",
+    "objectives": ["Précision, rappel, F1", "Validation croisée"]
+  }
+]

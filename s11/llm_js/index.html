@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple LLM App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style pour la barre de défilement */
+        #chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #chat-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        #chat-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        #chat-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .typing-indicator p {
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <div class="w-full max-w-2xl h-[90vh] flex flex-col bg-white rounded-2xl shadow-2xl">
+        <!-- En-tête -->
+        <div class="p-6 border-b border-gray-200">
+            <h1 class="text-2xl font-bold text-gray-800">Mon Assistant IA</h1>
+            <p class="text-sm text-gray-500">Posez-moi une question et je ferai de mon mieux pour y répondre.</p>
+        </div>
+
+        <!-- Conteneur du Chat -->
+        <div id="chat-container" class="flex-1 p-6 overflow-y-auto">
+            <!-- Les messages du chat apparaîtront ici -->
+            <div class="flex items-start gap-4 mb-6">
+                <div class="bg-blue-500 text-white p-2 rounded-full h-10 w-10 flex items-center justify-center font-bold">
+                    IA
+                </div>
+                <div class="bg-gray-200 rounded-xl p-4 max-w-lg">
+                    <p class="text-gray-800">Bonjour ! Comment puis-je vous aider aujourd'hui ?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone de saisie -->
+        <div class="p-6 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
+            <div class="flex items-center gap-4">
+                <input type="text" id="user-input" placeholder="Écrivez votre message..." class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" disabled>
+                <button id="send-button" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md" disabled>
+                    Envoyer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Étape 3: Connexion à l'API LLM ---
+
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        let chatHistory = [];
+        
+        // On active les champs une fois que tout est chargé
+        window.onload = () => {
+            userInput.disabled = false;
+            sendButton.disabled = false;
+            userInput.focus();
+        };
+
+        function addMessage(message, sender) {
+            const messageWrapper = document.createElement('div');
+            
+            if (sender === 'user') {
+                messageWrapper.className = 'flex items-start gap-4 mb-6 justify-end';
+                messageWrapper.innerHTML = `
+                    <div class="bg-blue-600 text-white rounded-xl p-4 max-w-lg">
+                        <p>${message}</p>
+                    </div>
+                    <div class="bg-gray-700 text-white p-2 rounded-full h-10 w-10 flex items-center justify-center font-bold">
+                        Vous
+                    </div>
+                `;
+            } else {
+                messageWrapper.className = 'flex items-start gap-4 mb-6';
+                messageWrapper.innerHTML = `
+                    <div class="bg-blue-500 text-white p-2 rounded-full h-10 w-10 flex items-center justify-center font-bold">
+                        IA
+                    </div>
+                    <div class="bg-gray-200 rounded-xl p-4 max-w-lg">
+                        <p class="text-gray-800">${message}</p>
+                    </div>
+                `;
+            }
+            
+            chatContainer.appendChild(messageWrapper);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingIndicator = document.createElement('div');
+            typingIndicator.id = 'typing-indicator';
+            typingIndicator.className = 'flex items-start gap-4 mb-6 typing-indicator';
+            typingIndicator.innerHTML = `
+                <div class="bg-blue-500 text-white p-2 rounded-full h-10 w-10 flex items-center justify-center font-bold">
+                    IA
+                </div>
+                <div class="bg-gray-200 rounded-xl p-4 max-w-lg">
+                    <p class="text-gray-800">est en train d'écrire...</p>
+                </div>
+            `;
+            chatContainer.appendChild(typingIndicator);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        async function getAIResponse(prompt) {
+            showTypingIndicator();
+            sendButton.disabled = true;
+            userInput.disabled = true;
+
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = {
+                contents: chatHistory,
+            };
+
+            // L'API Key est laissée vide, car l'environnement la fournira.
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                removeTypingIndicator();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    
+                    const aiText = result.candidates[0].content.parts[0].text;
+                    addMessage(aiText, 'ai');
+                    chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+
+                } else {
+                    addMessage("Désolé, je n'ai pas pu générer de réponse. Veuillez réessayer.", 'ai');
+                }
+
+            } catch (error) {
+                console.error("Erreur lors de l'appel à l'API:", error);
+                removeTypingIndicator();
+                addMessage("Désolé, une erreur est survenue. Vérifiez la console pour plus de détails.", 'ai');
+            } finally {
+                sendButton.disabled = false;
+                userInput.disabled = false;
+                userInput.focus();
+            }
+        }
+
+        function handleSendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                userInput.value = '';
+                getAIResponse(message);
+            }
+        }
+
+        sendButton.addEventListener('click', handleSendMessage);
+        userInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
