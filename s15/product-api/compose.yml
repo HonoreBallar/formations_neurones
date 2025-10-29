@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - ./uploads:/app/uploads
+      - ./data:/app/data
+    environment:
+      - PORT=3000
+    restart: unless-stopped

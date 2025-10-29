@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  app:
+    image: maven:3.9.6-eclipse-temurin-21
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: >
+      sh -c "while true; do mvn compile; sleep 2; done & mvn spring-boot:run -Dspring-boot.run.fork=false"
+    ports:
+      - "8080:8080"

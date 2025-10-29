@@ -1,0 +1,25 @@
+<div class="todo-container">
+  <h2>Ma Todolist Angular</h2>
+
+  <div class="task-input">
+    <input
+      type="text"
+      placeholder="Ajouter une nouvelle tâche..."
+      [(ngModel)]="newTaskDescription"
+      (keyup.enter)="addTask()"
+    />
+    <button (click)="addTask()">Ajouter</button>
+  </div>
+
+  <ul class="task-list">
+    <li *ngFor="let task of tasks" [class.completed]="task.completed">
+      <span (click)="toggleCompleted(task)">
+        {{ task.description }}
+      </span>
+      <button class="delete-btn" (click)="deleteTask(task.id)">Supprimer</button>
+    </li>
+    <li *ngIf="tasks.length === 0" class="no-tasks">
+      Aucune tâche pour le moment. Ajoutez-en une !
+    </li>
+  </ul>
+</div>

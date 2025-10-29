@@ -1,0 +1,33 @@
+[
+  {
+    "moduleId": 1,
+    "questions": [
+      {
+        "type": "qcm",
+        "prompt": "Que signifie IA ?",
+        "options": ["Intelligence Adaptée", "Intelligence Artificielle", "Interface Automatisée"],
+        "answerIndex": 1,
+        "explanation": "IA = Intelligence Artificielle."
+      },
+      {
+        "type": "vf",
+        "prompt": "Le Machine Learning est un sous-domaine de l’IA.",
+        "answerIndex": 0,
+        "options": ["Vrai", "Faux"],
+        "explanation": "Oui, le ML fait partie de l’IA."
+      }
+    ]
+  },
+  {
+    "moduleId": 2,
+    "questions": [
+      {
+        "type": "qcm",
+        "prompt": "La régression prédit quoi ?",
+        "options": ["Des catégories", "Des valeurs continues", "Des images"],
+        "answerIndex": 1,
+        "explanation": "La régression prédit des valeurs numériques continues."
+      }
+    ]
+  }
+]

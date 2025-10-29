@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site-ecommerce-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: site-ecommerce
+  template:
+    metadata:
+      labels:
+        app: site-ecommerce
+    spec:
+      containers:
+      - name: site-ecommerce
+        image: todo-app
+        ports:
+        - containerPort: 3000
