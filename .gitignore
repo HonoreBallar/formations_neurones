@@ -171,13 +171,4 @@ Desktop.ini
 .vscode/tasks.json
 .vscode/launch.json
 
-# ----------------
-# Ignore nested Git repositories / subprojects
-# If a subfolder is itself a Git repo, Git may warn when adding it.
-# Add specific subproject folders here or use a pattern to ignore nested .git dirs.
-s16/getting-started-app/
-s16/node-ci-cd-demo/
-**/.git
-**/.git/
-
 # End of .gitignore
